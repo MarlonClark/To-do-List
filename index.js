@@ -35,17 +35,22 @@ itemForm.addEventListener("submit", function(event) {
 
 // Show feedback
 function showFeedback(text, action) {
-  feedback.classList.add("showItem", `alert-${action}`);
+  feedback.classList.add(
+    "showItem",
+    `alert-${action}`,
+    "animated",
+    "fadeInDown"
+  );
   feedback.innerHTML = `<p>${text}</p>`;
   setTimeout(function() {
     feedback.classList.remove("showItem", `alert-${action}`);
-  }, 3000);
+  }, 2500);
 }
 
 // Add list item
 function addItem(textValue) {
   const div = document.createElement("div");
-  div.classList.add("item", "list-group-item");
+  div.classList.add("item", "list-group-item", "animated", "bounceInDown");
   div.innerHTML = `<h5 class="item-name d-flex justify-content-start text-capitalize text-truncate text-left">${textValue}</h5>
   <div class="item-icons d-flex justify-content-end">
     <a href="#" class="complete-item mx-1 item-icon">
@@ -71,26 +76,36 @@ function handleItem(textValue) {
         .querySelector(".complete-item")
         .addEventListener("click", function() {
           item.querySelector(".item-name").classList.toggle("completed");
+          item.querySelector(".item-name").classList.add("animated");
+          item.querySelector(".item-name").classList.toggle("shake");
           this.classList.toggle("visibility");
         });
       // Edit item
       item.querySelector(".edit-item").addEventListener("click", function() {
-        itemInput.value = textValue;
-        itemList.removeChild(item);
-        itemData = itemData.filter(function(item) {
-          return item !== textValue;
-        });
-        localStorage.setItem("list", JSON.stringify(itemData));
-        showFeedback("Ready to edit", "warning");
+        item.classList.add("animate", "fadeOut");
+        function editItem() {
+          itemInput.value = textValue;
+          itemList.removeChild(item);
+          itemData = itemData.filter(function(item) {
+            return item !== textValue;
+          });
+          localStorage.setItem("list", JSON.stringify(itemData));
+          showFeedback("Ready to edit", "success");
+        }
+        setTimeout(editItem, 1000);
       });
       // Delete item
       item.querySelector(".delete-item").addEventListener("click", function() {
-        itemList.removeChild(item);
-        itemData = itemData.filter(function(item) {
-          return item !== textValue;
-        });
-        localStorage.setItem("list", JSON.stringify(itemData));
-        showFeedback("Item deleted!", "success");
+        function deleteItem() {
+          itemList.removeChild(item);
+          itemData = itemData.filter(function(item) {
+            return item !== textValue;
+          });
+          localStorage.setItem("list", JSON.stringify(itemData));
+          showFeedback("Item deleted!", "success");
+        }
+        item.classList.add("animated", "hinge");
+        setTimeout(deleteItem, 1200);
       });
     }
   });
@@ -100,10 +115,15 @@ function handleItem(textValue) {
 clearBtn.addEventListener("click", function() {
   itemData = [];
   localStorage.removeItem("list");
-  const items = itemList.querySelectorAll(".item");
-  if (items.length > 0) {
-    items.forEach(function(item) {
-      itemList.removeChild(item);
-    });
+  itemList.classList.add("animated", "zoomOutLeft");
+  function deleteLocalstorage() {
+    const items = itemList.querySelectorAll(".item");
+    if (items.length > 0) {
+      items.forEach(function(item) {
+        itemList.removeChild(item);
+      });
+    }
+    itemList.classList.remove("zoomOutLeft");
   }
+  setTimeout(deleteLocalstorage, 1000);
 });
