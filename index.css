@@ -1,0 +1,67 @@
+.container {
+  background-color: rgb(231, 247, 255);
+}
+
+/* Feedback alert */
+.feedback {
+  display: none;
+  opacity: 0.9;
+  font-weight: 500;
+  position: absolute;
+  width: 250px;
+  left: 50%;
+  margin-left: -125px;
+}
+.showItem {
+  display: block;
+}
+
+/* Main Icon */
+#main-icon {
+  font-size: 7em;
+}
+
+/* Main Title */
+#main-label {
+  font-family: "Permanent Marker", cursive;
+  font-size: 2.5em;
+  text-shadow: 0px 7px 5px #bbb;
+}
+
+/* Form input */
+#itemInput {
+  font-family: "Permanent Marker", cursive;
+}
+.form-control:focus {
+  background-color: aliceblue;
+}
+
+/* List items */
+.item {
+  display: flex;
+  justify-content: space-between;
+}
+.item-name {
+  font-family: "Permanent Marker", cursive;
+}
+.visibility {
+  opacity: 0.5;
+}
+.completed {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+/* Icon color and size */
+.item-icons {
+  font-size: 1.2rem;
+}
+.fa-check-circle {
+  color: limegreen;
+}
+.fa-edit {
+  color: dodgerblue;
+}
+.fa-trash-alt {
+  color: tomato;
+}
