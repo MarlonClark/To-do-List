@@ -1,0 +1,90 @@
+body {
+  background-color: rgb(146, 255, 164);
+}
+.container {
+  position: relative;
+  height: 100%;
+  margin: auto;
+}
+
+/* Feedback alert */
+.feedback {
+  display: none;
+  position: absolute;
+  /* width: 100%; */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.add-text {
+  background-color: rgb(255, 97, 97);
+}
+
+/* Main Icon */
+#main-icon {
+  font-size: 3em;
+  text-shadow: 0px 3px 2px rgb(43, 43, 43, 0.5);
+}
+
+/* Main Title */
+#main-label {
+  font-family: "Permanent Marker", cursive;
+  font-size: 2em;
+  text-shadow: 0px 3px 2px rgb(43, 43, 43, 0.5);
+}
+
+/* Form text input */
+#itemInput {
+  font-family: "Courier New", Courier, monospace;
+}
+.form-control:focus {
+  background-color: aliceblue;
+}
+
+/* List items */
+.item {
+  display: flex;
+  justify-content: space-between;
+}
+.item-name {
+  margin: 0;
+  font-family: "Courier New", Courier, monospace;
+  padding: 3px 0;
+}
+.visibility {
+  opacity: 0.5;
+}
+.completed {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+.row {
+  margin: auto;
+}
+/* Icon color and size */
+.item-icons {
+  font-size: 1.2rem;
+}
+.fa-check-circle {
+  color: limegreen;
+}
+.fa-edit {
+  color: dodgerblue;
+}
+.fa-trash-alt {
+  color: tomato;
+}
+
+/* Larger Screens */
+@media (min-width: 700px) {
+  .container {
+    height: 100%;
+  }
+  #main-icon {
+    font-size: 5em;
+  }
+  #main-label {
+    font-size: 2.5em;
+  }
+}

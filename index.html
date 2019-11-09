@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>To-Do List</title>
+    <!-- Bootstrap -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <!-- font for icons -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+      integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+      crossorigin="anonymous"
+    />
+    <!-- Main custom CSS -->
+    <link rel="stylesheet" href="index.css" />
+    <!-- Animation!! -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css"
+    />
+    <!-- Google fonts -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Permanent+Marker"
+    />
+  </head>
+
+  <body>
+    <div class="container animated fadeIn">
+      <div class="row">
+        <div class="col mx-auto col-md-8 mt-4 text-center">
+          <!-- Alert box for feedback -->
+          <div
+            class="alert alert-warning feedback text-capitalize shadow animated text-center"
+            role="alert"
+          >
+            <span id="feedback_text"></span>
+          </div>
+          <!-- Logo icon -->
+          <i id="main-icon" class="far fa-clipboard"></i>
+          <!-- List Title -->
+          <h3 id="main-label" class="text-capitalize mb-4">To-Do List</h3>
+          <!-- Form start -->
+          <form id="itemForm" class="my-3">
+            <div class="input-group">
+              <!-- List input -->
+              <input
+                type="text"
+                class="shadow form-control text-capitalize"
+                id="itemInput"
+                placeholder="New Task..."
+              />
+              <div class="input-group-append">
+                <button
+                  class="shadow btn btn-primary font-weight-bold"
+                  type="submit"
+                >
+                  Add Task
+                </button>
+              </div>
+            </div>
+          </form>
+          <!-- end of form -->
+
+          <!-- Item List -->
+          <div class="item-container">
+            <div class="item-list my-4 list-group list-group-flush">
+              <!--
+                Single item template, See index.js
+              -->
+            </div>
+            <button
+              type="button"
+              class="btn btn-warning shadow font-weight-bold"
+              data-toggle="modal"
+              data-target="#clear-list"
+            >
+              Clear List
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="clear-list"
+      tabindex="1"
+      role="dialog"
+      aria-labelledby="clear-list-modal"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-center">
+              Delete To-Do List
+            </h5>
+          </div>
+          <div class="modal-body">
+            <p>Are you sure?</p>
+            <div class="inline">
+              <button
+                type="button"
+                id="delete-list"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+                aria-label="Delete"
+                value="true"
+              >
+                Delete
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                data-dismiss="modal"
+                aria-label="Cancel"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Required Bootstrap JQuery, Popper.js, and Bootstrap plugins -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <!-- My To-Do List JS -->
+    <script src="index.js"></script>
+  </body>
+</html>
