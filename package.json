@@ -1,0 +1,20 @@
+{
+  "name": "to-do-list",
+  "version": "1.0.0",
+  "description": "Simple to-do list web app that uses Bootstrap and local storage to keep changes after page reloads.",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "gh-pages -d dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarlonClark/To-do-List.git"
+  },
+  "keywords": [],
+  "author": "Marlon Clark",
+  "license": "MIT",
+  "homepage": "https://MarlonClark.github.io/to-do-list",
+  "bugs": {
+    "url": "https://github.com/MarlonClark/To-do-List/issues"
+  }
+}
