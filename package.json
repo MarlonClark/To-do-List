@@ -16,5 +16,8 @@
   "homepage": "https://MarlonClark.github.io/to-do-list",
   "bugs": {
     "url": "https://github.com/MarlonClark/To-do-List/issues"
+  },
+  "dependencies": {
+    "gh-pages": "^2.1.1"
   }
 }
