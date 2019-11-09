@@ -4,8 +4,9 @@
 const itemForm = document.getElementById("itemForm");
 const itemInput = document.getElementById("itemInput");
 const itemList = document.querySelector(".item-list");
-const clearBtn = document.getElementById("clear-list");
+const deleteBtn = document.getElementById("delete-list");
 const feedback = document.querySelector(".feedback");
+const feedback_text = document.getElementById("feedback_text");
 
 // To-Do List items, check if in localStorage
 let itemData = JSON.parse(localStorage.getItem("list")) || [];
@@ -20,7 +21,8 @@ itemForm.addEventListener("submit", function(event) {
 
   // Empty text warning
   if (textValue === "") {
-    showFeedback("Please enter some text.", "danger");
+    itemInput.classList.add("add-text");
+    itemInput.setAttribute("placeholder", "Add Something");
   } else {
     // Add item
     addItem(textValue);
@@ -30,34 +32,43 @@ itemForm.addEventListener("submit", function(event) {
     localStorage.setItem("list", JSON.stringify(itemData));
     // Clear form after submit
     itemInput.value = "";
+    itemInput.classList.remove("add-text");
+    itemInput.setAttribute("placeholder", "New Task...");
   }
 });
 
 // Show feedback
-function showFeedback(text, action) {
-  feedback.classList.add(
-    "showItem",
-    `alert-${action}`,
-    "animated",
-    "fadeInDown"
-  );
-  feedback.innerHTML = `<p>${text}</p>`;
+function showFeedback(text) {
+  feedback.style.display = "block";
+  feedback.classList.remove("fadeOutUp");
+  feedback.classList.add("fadeInDown");
+  feedback_text.innerHTML = text;
   setTimeout(function() {
-    feedback.classList.remove("showItem", `alert-${action}`);
+    feedback.classList.remove("fadeInDown");
+    feedback.classList.add("fadeOutUp");
   }, 2500);
 }
 
 // Add list item
 function addItem(textValue) {
   const div = document.createElement("div");
-  div.classList.add("item", "list-group-item", "animated", "bounceInDown");
-  div.innerHTML = `<h5 class="item-name d-flex justify-content-start text-capitalize text-truncate text-left">${textValue}</h5>
+  div.classList.add(
+    "item",
+    "list-group-item",
+    "animated",
+    "fadeInDown",
+    "shadow"
+  );
+  div.innerHTML = `<h5 class="item-name d-flex text-capitalize text-truncate text-left">${textValue}</h5>
   <div class="item-icons d-flex justify-content-end">
-    <a href="#" class="complete-item mx-1 item-icon">
+    <a href="#" class="complete-item mx-1 item-icon"
+    data-toggle="tooltip" data-placement="top" title="Task Complete">
       <i class="far fa-check-circle"></i></a>
-    <a href="#" class="edit-item mx-1 item-icon">
+    <a href="#" class="edit-item mx-1 item-icon"
+    data-toggle="tooltip" data-placement="top" title="Edit Task">
       <i class="far fa-edit"></i></a>
-    <a href="#" class="delete-item item-icon">
+    <a href="#" class="delete-item item-icon"
+    data-toggle="tooltip" data-placement="top" title="Delete Task">
       <i class="far fa-trash-alt"></i></a>
   </div>`;
 
@@ -82,7 +93,7 @@ function handleItem(textValue) {
         });
       // Edit item
       item.querySelector(".edit-item").addEventListener("click", function() {
-        item.classList.add("animate", "fadeOut");
+        item.classList.add("animate", "fadeOutUp");
         function editItem() {
           itemInput.value = textValue;
           itemList.removeChild(item);
@@ -90,7 +101,6 @@ function handleItem(textValue) {
             return item !== textValue;
           });
           localStorage.setItem("list", JSON.stringify(itemData));
-          showFeedback("Ready to edit", "success");
         }
         setTimeout(editItem, 1000);
       });
@@ -102,7 +112,6 @@ function handleItem(textValue) {
             return item !== textValue;
           });
           localStorage.setItem("list", JSON.stringify(itemData));
-          showFeedback("Item deleted!", "success");
         }
         item.classList.add("animated", "hinge");
         setTimeout(deleteItem, 1200);
@@ -112,7 +121,7 @@ function handleItem(textValue) {
 }
 
 // Clear to-do list
-clearBtn.addEventListener("click", function() {
+deleteBtn.addEventListener("click", function() {
   itemData = [];
   localStorage.removeItem("list");
   itemList.classList.add("animated", "zoomOutLeft");
@@ -125,5 +134,10 @@ clearBtn.addEventListener("click", function() {
     }
     itemList.classList.remove("zoomOutLeft");
   }
-  setTimeout(deleteLocalstorage, 1000);
+  setTimeout(deleteLocalstorage, 800);
+});
+
+// Initialize tool-tips
+$(function() {
+  $('[data-toggle="tooltip"]').tooltip();
 });
